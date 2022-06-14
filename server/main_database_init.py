@@ -27,8 +27,17 @@ def main():
     cur = conn.cursor()
 
     if FLAGS.reset:
+        cur.execute('''DROP TABLE IF EXISTS users;''')
         print(f'[{int(time.time()-STIME)}] Dropped all tables of {secret.dbname}')
 
+    cur.execute('''CREATE TABLE IF NOT EXISTS users (
+                     id INT AUTO_INCREMENT,
+                     user TEXT NOT NULL,
+                     salt TEXT NOT NULL,
+                     password TEXT NOT NULL,
+                     PRIMARY KEY (id),
+                     UNIQUE (user)
+                   );''')
 
     cur.execute('''SHOW TABLES;''')
     res = cur.fetchall()

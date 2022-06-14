@@ -26,6 +26,13 @@ def main():
         sys.exit(0)
     cur = conn.cursor()
 
+    if FLAGS.reset:
+        print(f'[{int(time.time()-STIME)}] Dropped all tables of {secret.dbname}')
+
+
+    cur.execute('''SHOW TABLES;''')
+    res = cur.fetchall()
+    print(f'[{int(time.time()-STIME)}] Created Tables: {res}')
 
     conn.commit()
     conn.close()

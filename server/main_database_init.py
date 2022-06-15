@@ -27,7 +27,15 @@ def main():
     cur = conn.cursor()
 
     if FLAGS.reset:
+        cur.execute('''DROP TABLE IF EXISTS knowledges;''')
+        cur.execute('''DROP TABLE IF EXISTS models;''')
+        cur.execute('''DROP TABLE IF EXISTS parameters;''')
+        cur.execute('''DROP TABLE IF EXISTS architectures;''')
+        cur.execute('''DROP TABLE IF EXISTS labels;''')
+        cur.execute('''DROP TABLE IF EXISTS compiles;''')
+        cur.execute('''DROP TABLE IF EXISTS names;''')
         cur.execute('''DROP TABLE IF EXISTS users;''')
+        conn.commit()
         print(f'[{int(time.time()-STIME)}] Dropped all tables of {secret.dbname}')
 
     cur.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -38,6 +46,70 @@ def main():
                      PRIMARY KEY (id),
                      UNIQUE (user)
                    );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS names (
+                     id INT AUTO_INCREMENT,
+                     name TEXT NOT NULL,
+                     PRIMARY KEY (id),
+                     UNIQUE (name)
+                   );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS labels (
+                     id INT AUTO_INCREMENT,
+                     name INT NOT NULL,
+                     label LONGBLOB NOT NULL,
+                     PRIMARY KEY (id),
+                     FOREIGN KEY (name) REFERENCES names (id),
+                     UNIQUE (label)
+                   );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS compiles (
+                     id INT AUTO_INCREMENT,
+                     name INT NOT NULL,
+                     compile LONGBLOB NOT NULL,
+                     PRIMARY KEY (id),
+                     FOREIGN KEY (name) REFERENCES names (id),
+                     UNIQUE (compile)
+                   );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS architectures (
+                     id INT AUTO_INCREMENT,
+                     name INT NOT NULL,
+                     architecture TEXT NOT NULL,
+                     PRIMARY KEY (id),
+                     FOREIGN KEY (name) REFERENCES names (id),
+                     UNIQUE (architecture)
+                   );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS parameters (
+                     id INT AUTO_INCREMENT,
+                     name INT NOT NULL,
+                     parameter LONGBLOB NOT NULL,
+                     PRIMARY KEY (id),
+                     FOREIGN KEY (name) REFERENCES names (id),
+                     UNIQUE (parameter)
+                   );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS models (
+                     id INT AUTO_INCREMENT,
+                     name INT NOT NULL,
+                     label INT NOT NULL,
+                     compile INT NOT NULL,
+                     architecture INT NOT NULL,
+                     parameter INT NOT NULL,
+                     major INT NOT NULL,
+                     minor INT NOT NULL,
+                     micro INT NOT NULL,
+                     PRIMARY KEY (id),
+                     UNIQUE (name, major, minor, micro),
+                     FOREIGN KEY (name) REFERENCES names (id),
+                     FOREIGN KEY (label) REFERENCES labels (id),
+                     FOREIGN KEY (compile) REFERENCES compiles (id),
+                     FOREIGN KEY (architecture) REFERENCES architectures (id),
+                     FOREIGN KEY (parameter) REFERENCES parameters (id)
+                   );''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS knowledges (
+                     id INT AUTO_INCREMENT,
+                     base INT NOT NULL,
+                     parameter LONGBLOB NOT NULL,
+                     PRIMARY KEY (id),
+                     FOREIGN KEY (base) REFERENCES models (id)
+                   );''')
+    conn.commit()
 
     cur.execute('''SHOW TABLES;''')
     res = cur.fetchall()

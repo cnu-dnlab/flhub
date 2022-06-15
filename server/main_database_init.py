@@ -2,6 +2,8 @@ import os
 import sys
 import time
 
+import mariadb
+
 import secret
 
 FLAGS = _ = None

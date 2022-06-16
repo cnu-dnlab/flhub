@@ -1,0 +1,2 @@
+-- Why we use file storage not RDBMS file arhive?
+-- https://www.brentozar.com/archive/2021/07/store-files-in-a-file-system-not-a-relational-database/

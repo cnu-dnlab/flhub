@@ -11,6 +11,7 @@ DEBUG = False
 STIME = time.time()
 
 
+## TODO(LuHa): Need to SCHEMA change - Ref https://www.brentozar.com/archive/2021/07/store-files-in-a-file-system-not-a-relational-database/
 def main():
     if DEBUG:
         print(f'Parsed arguments {FLAGS}')

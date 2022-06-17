@@ -1,7 +1,7 @@
 # flhub
 FLHub development and distribution repository
 
-## Server
+## [Server](https://github.com/cnu-dnlab/flhub/tree/main/server)
 
 ## Clients
 

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service FLHub {
+    // Check the server status
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// The reqeust message containing the user's name
+message HelloRequest {
+    string name = 1;
+}
+
+// The reponse message containing the server status with greetings
+message HelloReply {
+    string message = 1;
+}

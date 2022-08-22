@@ -18,7 +18,6 @@ CREATE TABLE IF NOT EXISTS models (
   modelname TEXT NOT NULL,
   detail TEXT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (userid) REFERENCES users (id),
   UNIQUE (userid, modelname)
 );
 
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS versions (
   micro INT UNSIGNED NOT NULL,
   location TEXT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (modelid) REFERENCES models (id),
   UNIQUE (modelid, major, minor, micro)
 );
 
@@ -47,8 +45,6 @@ CREATE TABLE IF NOT EXISTS commits (
   location TEXT NOT NULL,
   status TINYINT(2) UNSIGNED DEFAULT 0,
   PRIMARY KEY (id),
-  FOREIGN KEY (userid) REFERENCES users (id),
-  FOREIGN KEY (versionid) REFERENCES versions (id),
-  UNIQUE (versionid, userid, revision)
+  UNIQUE (versionidfrom, userid, revision)
 );
 

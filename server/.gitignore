@@ -2,6 +2,9 @@ venv
 *_pb2.py
 *_pb2_grpc.py
 secret.py
+clean.sh
+initialize.sh
+docker-entrypoint-initdb.d/00-create_user.sql
 
 ## https://github.com/github/gitignore/blob/main/Global/Vim.gitignore
 # Swap

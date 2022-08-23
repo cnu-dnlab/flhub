@@ -1,0 +1,5 @@
+# prepare_init.py output files
+clean.sh
+initialize.sh
+secret.py
+docker-entrypoint-initdb.d/

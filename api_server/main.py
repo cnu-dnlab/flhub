@@ -9,3 +9,8 @@ db = []
 def root():
     return {'message': 'Hello World'}
 
+
+@app.get('/models')
+def get_models():
+    return {}
+

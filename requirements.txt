@@ -1,4 +1,18 @@
 pip
 wheel
+ipykernel
+tensorflow
+tensorflow-hub
+#numpy # dependency of tensorflow
+matplotlib
+ipympl # For Jupyter Notebook
+pandas
+#grpcio # deprecate
+#grpcio-tools # deprecate
 fastapi
-uvicorn
+uvicorn[standard]
+gunicorn
+python-multipart
+mariadb
+# Pillow # Image # dependency of matplotlib
+scipy

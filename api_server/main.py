@@ -14,3 +14,8 @@ def root():
 def get_models():
     return {}
 
+
+@app.get('/models/{modelname}')
+def get_model():
+    return {}
+

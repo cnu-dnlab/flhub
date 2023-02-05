@@ -22,6 +22,10 @@ def get_model():
 
 @app.post('/models/{modelname}')
 def post_model():
-    return{}
+    return {}
 
+
+@app.post('/models/{modelname}/localresult')
+def post_localresult():
+    return {}
 

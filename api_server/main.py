@@ -19,3 +19,9 @@ def get_models():
 def get_model():
     return {}
 
+
+@app.post('/models/{modelname}')
+def post_model():
+    return{}
+
+

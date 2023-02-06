@@ -34,3 +34,7 @@ def post_localresult():
 def post_globalresult():
     return {}
 
+
+@app.get('/models/{modelname}/localresults')
+def get_localresults():
+    return {}

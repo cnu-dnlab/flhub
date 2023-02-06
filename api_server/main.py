@@ -29,3 +29,8 @@ def post_model():
 def post_localresult():
     return {}
 
+
+@app.post('/models/{modelname}/globalresult')
+def post_globalresult():
+    return {}
+

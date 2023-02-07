@@ -40,7 +40,12 @@ def get_localresults():
     return {}
 
 
-@app.get('/models/{modelname}/globalresult')
+@app.get('/models/{modelname}/globalresults')
 def get_globalresults():
+    return {}
+
+
+@app.get('/models/{modelname}/globalresult')
+def get_globalresult()
     return {}
 

@@ -12,7 +12,6 @@ import numpy as np
 import pandas as pd
 import PIL.Image as Image
 
-
 FLAGS = _ = None
 DEBUG = False
 
